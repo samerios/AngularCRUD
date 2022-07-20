@@ -1,0 +1,71 @@
+{
+  "user": [
+    {
+      "firstName": "User13",
+      "lastName": "",
+      "email": "user1@gmail.com",
+      "phoneNumber": "0549255054",
+      "address": "",
+      "gender": "Male",
+      "city": {
+        "id": 5,
+        "name": "Akko"
+      },
+      "groups": [
+        {
+          "id": 1,
+          "groupName": "Ay678"
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "city": [
+    {
+      "id": 1,
+      "name": "Tel-Aviv"
+    },
+    {
+      "id": 2,
+      "name": "Haifa"
+    },
+    {
+      "id": 3,
+      "name": "Ramat Gan"
+    },
+    {
+      "id": 4,
+      "name": "Kiryat-Shemona"
+    },
+    {
+      "id": 5,
+      "name": "Akko"
+    }
+  ],
+  "group": [
+    {
+      "id": 1,
+      "groupName": "Ay678"
+    },
+    {
+      "id": 2,
+      "groupName": "Cr3456"
+    },
+    {
+      "id": 3,
+      "groupName": "Gz567"
+    },
+    {
+      "id": 4,
+      "groupName": "Mv604"
+    },
+    {
+      "id": 5,
+      "groupName": "Pd122"
+    },
+    {
+      "id": 6,
+      "groupName": "Lo1524"
+    }
+  ]
+}

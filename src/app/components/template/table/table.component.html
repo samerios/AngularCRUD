@@ -1,0 +1,42 @@
+<table mat-table [dataSource]="this.dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8">
+    <ng-container *ngFor="let column of this.tableConfig.tableColumnConfig" matColumnDef={{column.name}}>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by {{column.name}}">
+            {{column.displayName}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="column.name!='action';then cell; else actionsCell"></ng-container>
+            <ng-template #cell>
+                <ng-template *ngIf="column.selectConfig;then selectCell;else normalCell">
+                </ng-template>
+            </ng-template>
+
+            <ng-template #normalCell>
+                {{row[column.name]}}
+            </ng-template>
+
+            <ng-template #selectCell>
+                {{!row[column.name] ? '' : row[column.name][column.selectConfig?.viewValue]}}
+            </ng-template>
+
+            <ng-template #actionsCell>
+                <div class="actions-container">
+                    <button *ngIf="this.tableConfig.editable" mat-icon-button color="primary" matTooltip="Edit"
+                        (click)="editButtonClicked(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button *ngIf="this.tableConfig.deletable" mat-icon-button color="warn" matTooltip="Delete"
+                        (click)="deleteButtonClicked(row)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </ng-template>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsNames"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsNames;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of elements">
+</mat-paginator>

@@ -1,0 +1,66 @@
+<div class="form-toolbar">
+    <div class="form-title-actions">
+        <button style="position: relative" mat-icon-button class="example-icon save-icon" matTooltip={{actionIconButton}} (click)="saveOrUpdateData()">
+            <mat-icon>{{actionIconButton}}</mat-icon>
+        </button>
+        <h1 mat-dialog-title>{{this.title}}</h1>
+    </div>
+    <button mat-icon-button class="example-icon close-icon" (click)="this.dialogRef.close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content>
+    <form [formGroup]="this.userForm">
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput placeholder="Samer">
+            <mat-error *ngIf="this.userForm.controls.firstName.invalid">required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput placeholder="Kinaan">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="samer@example.com">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="this.userForm.controls.email.invalid">required or maybe this email already in use
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Phone Number</mat-label>
+            <input formControlName="phoneNumber" matInput placeholder="0540000000">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="this.userForm.controls.phoneNumber.invalid">numbers only and max 10 numbers</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select [(value)]="selectedCity" placeholder="Tel-Aviv">
+                <mat-option *ngFor="let city of this.cities" [value]="city.id">{{city.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input formControlName="address" matInput placeholder="a,132">
+            <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+
+        <label id="example-radio-group-label">Gender</label>
+        <mat-radio-group formControlName="gender" aria-labelledby="example-radio-group-label"
+            class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let gender of this.genderList" [value]="gender">
+                {{gender}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <app-chips-autocomplete *ngIf="groups" label="Groups" inputPlaceholder="New Group" [values]="this.groups"
+            [(selectedValues)]="this.selectedGroups" [autocompleteConfig]="groupsAutoCompleteConfig">
+        </app-chips-autocomplete>
+    </form>
+</div>
